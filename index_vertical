@@ -145,6 +145,7 @@ body{
     font-size:36px;
     font-weight:600;
 }
+
 .primero{
     background:#E8D6EF;
     color:#6B1F72;
@@ -394,7 +395,6 @@ POSTRE
 
 const URL_JSON =
 "https://script.google.com/macros/s/AKfycbx0JiNXhFy5NTiDU9Zhrp5Ym1OTsDEjnQswsmuRzpnZR6mMbGM-O_JHKwV4jxAYkpdcdQ/exec";
-``
 
 const CAT = {
 "Lunes":"DILLUNS",
