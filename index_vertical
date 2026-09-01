@@ -23,7 +23,7 @@
     box-sizing:border-box;
 }
 
-.body{
+body{
     margin:0;
     background:transparent;
     font-family:'Ciutadella', Arial, sans-serif;
@@ -143,8 +143,8 @@
     text-align:center;
     padding:18px;
     font-size:36px;
-    font-
-
+    font-weight:600;
+}
 .primero{
     background:#E8D6EF;
     color:#6B1F72;
@@ -394,6 +394,7 @@ POSTRE
 
 const URL_JSON =
 "https://script.google.com/macros/s/AKfycbx0JiNXhFy5NTiDU9Zhrp5Ym1OTsDEjnQswsmuRzpnZR6mMbGM-O_JHKwV4jxAYkpdcdQ/exec";
+``
 
 const CAT = {
 "Lunes":"DILLUNS",
