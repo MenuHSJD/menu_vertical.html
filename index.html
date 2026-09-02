@@ -378,7 +378,7 @@ POSTRE
 
 const URL_JSON =
 "https://script.google.com/macros/s/AKfycbx0JiNXhFy5NTiDU9Zhrp5Ym1OTsDEjnQswsmuRzpnZR6mMbGM-O_JHKwV4jxAYkpdcdQ/exec";
-
+let idiomaActual = "CAT";
 const CAT = {
 "Lunes":"DILLUNS",
 "Martes":"DIMARTS",
@@ -447,6 +447,23 @@ registros[0].Dia;
 
 document.getElementById("tituloSemana").innerHTML =
 "MENÚ CAFETERIA";
+if(idiomaActual === "CAT"){
+
+    document.querySelector("#menuComida .servicio").innerHTML =
+    "DINAR";
+
+    document.querySelector("#menuCena .servicio").innerHTML =
+    "SOPAR";
+
+}else{
+
+    document.querySelector("#menuComida .servicio").innerHTML =
+    "COMIDA";
+
+    document.querySelector("#menuCena .servicio").innerHTML =
+    "CENA";
+
+}
 
 document.getElementById("fechaCabecera").innerHTML =
 "Hospital Sant Joan de Déu Barcelona · " +
@@ -503,6 +520,10 @@ function pintar(lista){
 return lista.map(x => {
 
 const nombre = (x.Plato_Cat || "").toUpperCase();
+const texto =
+    idiomaActual === "CAT"
+    ? x.Plato_Cat
+    : x.Plato_Es;
 
 const tieneGluten =
 PALABRAS_GLUTEN.some(p =>
@@ -515,9 +536,9 @@ nombre.includes(p));
 return `
 <div class="item item-con-iconos">
 
-    <span class="item-texto">
-        ${x.Plato_Cat}
-    </span>
+  <span class="item-texto">
+    ${texto}
+</span>
 
     ${
         tieneGluten
@@ -570,7 +591,18 @@ console.error(e);
 }
 
 cargar();
-setInterval(cargar,60000);
+
+setInterval(() => {
+
+    idiomaActual =
+        idiomaActual === "CAT"
+        ? "ES"
+        : "CAT";
+
+    cargar();
+
+},60000);
+`
 
 </script>
 
