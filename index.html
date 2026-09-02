@@ -520,10 +520,7 @@ function pintar(lista){
 return lista.map(x => {
 
 const nombre = (x.Plato_Cat || "").toUpperCase();
-const texto =
-    idiomaActual === "CAT"
-    ? x.Plato_Cat
-    : x.Plato_Es;
+const texto = x.Plato_Cat;
 
 const tieneGluten =
 PALABRAS_GLUTEN.some(p =>
@@ -602,7 +599,7 @@ setInterval(() => {
     cargar();
 
 },60000);
-`
+
 
 </script>
 
