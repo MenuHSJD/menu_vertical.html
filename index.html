@@ -576,12 +576,14 @@ idiomaActual === "CAT"
 ``
 
 const tieneGluten =
-PALABRAS_GLUTEN.some(p =>
-nombre.includes(p));
+String(x.Gluten || "")
+.trim()
+.toUpperCase() === "SI";
 
 const tieneLacteos =
-PALABRAS_LACTEOS.some(p =>
-nombre.includes(p));
+String(x.Lacteos || "")
+.trim()
+.toUpperCase() === "SI";
 
 return `
 <div class="item item-con-iconos">
