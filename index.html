@@ -379,6 +379,7 @@ POSTRE
 const URL_JSON =
 "https://script.google.com/macros/s/AKfycbx0JiNXhFy5NTiDU9Zhrp5Ym1OTsDEjnQswsmuRzpnZR6mMbGM-O_JHKwV4jxAYkpdcdQ/exec";
 
+let idiomaActual = "CAT";
 const CAT = {
 "Lunes":"DILLUNS",
 "Martes":"DIMARTS",
@@ -503,6 +504,14 @@ function pintar(lista){
 return lista.map(x => {
 
 const nombre = (x.Plato_Cat || "").toUpperCase();
+const partes =
+(x.Plato_Cat || "").split("/");
+
+const texto =
+idiomaActual === "CAT"
+? (partes[0] || "")
+: (partes[1] || partes[0] || "");
+``
 
 const tieneGluten =
 PALABRAS_GLUTEN.some(p =>
@@ -516,7 +525,7 @@ return `
 <div class="item item-con-iconos">
 
     <span class="item-texto">
-        ${x.Plato_Cat}
+        ${texto}
     </span>
 
     ${
@@ -548,7 +557,9 @@ cveg.innerHTML =
 pintar(filtrar("Comida","Vegano"));
 
 cpostre.innerHTML =
-'<div class="item">Pregunta por el plato / Pregunta per el plat</div>';
+idiomaActual === "CAT"
+? '<div class="item">PREGUNTA PER EL PLAT</div>'
+: '<div class="item">PREGUNTA POR EL PLATO</div>';
 
 cnp.innerHTML =
 pintar(filtrar("Cena","Primero"));
@@ -559,8 +570,10 @@ pintar(filtrar("Cena","Segundo"));
 cnveg.innerHTML =
 pintar(filtrar("Cena","Vegano"));
 
-cnpostre.innerHTML =
-'<div class="item">Pregunta por el plato / Pregunta per el plat</div>';
+cpostre.innerHTML =
+idiomaActual === "CAT"
+? '<div class="item">PREGUNTA PER EL PLAT</div>'
+: '<div class="item">PREGUNTA POR EL PLATO</div>';
 
 }
 catch(e){
@@ -570,8 +583,17 @@ console.error(e);
 }
 
 cargar();
-setInterval(cargar,60000);
 
+setInterval(() => {
+
+    idiomaActual =
+        idiomaActual === "CAT"
+        ? "ES"
+        : "CAT";
+
+    cargar();
+
+},60000);
 </script>
 
 </body>
