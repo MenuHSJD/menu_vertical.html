@@ -258,14 +258,14 @@ body{
 <div class="pantalla">
 <div class="menu-panel">
 <div class="columna" id="menuComida">
-<div class="servicio">
-DINAR / COMIDA
+<div class="servicio" id="tituloServicio">
+DINAR
 </div>
 
 <div class="bloque">
 
-<div class="titulo-bloque primero">
-PRIMER / PRIMERO
+<div class="titulo-bloque primero" id="tituloPrimero">
+PRIMER
 </div>
 
 <div class="cuerpo-bloque" id="cp"></div>
@@ -274,8 +274,8 @@ PRIMER / PRIMERO
 
 <div class="bloque">
 
-<div class="titulo-bloque segundo">
-SEGON / SEGUNDO
+<div class="titulo-bloque segundo" id="tituloSegundo">
+SEGON
 </div>
 
 <div class="cuerpo-bloque" id="cs"></div>
@@ -284,8 +284,8 @@ SEGON / SEGUNDO
 
 <div class="bloque">
 
-<div class="titulo-bloque vegano">
-VEGÀ / VEGANO
+<div class="titulo-bloque vegano" id="tituloVegano">
+VEGÀ
 </div>
 
 <div class="cuerpo-bloque" id="cveg"></div>
@@ -448,6 +448,35 @@ registros[0].Dia;
 
 document.getElementById("tituloSemana").innerHTML =
 "MENÚ CAFETERIA";
+if(idiomaActual === "CAT"){
+
+    document.getElementById("tituloServicio").innerHTML =
+    "DINAR";
+
+    document.getElementById("tituloPrimero").innerHTML =
+    "PRIMER";
+
+    document.getElementById("tituloSegundo").innerHTML =
+    "SEGON";
+
+    document.getElementById("tituloVegano").innerHTML =
+    "VEGÀ";
+
+} else {
+
+    document.getElementById("tituloServicio").innerHTML =
+    "COMIDA";
+
+    document.getElementById("tituloPrimero").innerHTML =
+    "PRIMERO";
+
+    document.getElementById("tituloSegundo").innerHTML =
+    "SEGUNDO";
+
+    document.getElementById("tituloVegano").innerHTML =
+    "VEGANO";
+
+}    
 
 document.getElementById("fechaCabecera").innerHTML =
 "Hospital Sant Joan de Déu Barcelona · " +
