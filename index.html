@@ -310,7 +310,7 @@ SOPAR / CENA
 
 <div class="bloque">
 
-<div class="titulo-bloque primero" id="tituloPrimero">
+<div class="titulo-bloque primero"
 PRIMER
 </div>
 
@@ -320,7 +320,7 @@ PRIMER
 
 <div class="bloque">
 
-<div class="titulo-bloque segundo" id="tituloSegundo">
+<div class="titulo-bloque segundo"
 SEGON
 </div>
 
@@ -330,7 +330,7 @@ SEGON
 
 <div class="bloque">
 
-<div class="titulo-bloque vegano" id="tituloVegano">
+<div class="titulo-bloque vegano"
 VEGÀ
 </div>
 
@@ -453,18 +453,15 @@ if(idiomaActual === "CAT"){
 
     document.querySelector("#menuCena .servicio").innerHTML =
     "SOPAR";
+document.getElementById("tituloPrimero").innerHTML =
+"PRIMER";
 
- setInterval(() => {
+document.getElementById("tituloSegundo").innerHTML =
+"SEGON";
 
-    idiomaActual =
-        idiomaActual === "CAT"
-        ? "ES"
-        : "CAT";
-
-    cargar();
-
-},60000);
-``
+document.getElementById("tituloVegano").innerHTML =
+"VEGÀ";
+ 
 }else{
 
     document.querySelector("#menuComida .servicio").innerHTML =
@@ -623,14 +620,7 @@ setInterval(() => {
         : "CAT";
 
     cargar();
-    document.getElementById("tituloPrimero").innerHTML =
-"PRIMER";
 
-document.getElementById("tituloSegundo").innerHTML =
-"SEGON";
-
-document.getElementById("tituloVegano").innerHTML =
-"VEGÀ";
 
 },60000);
 
