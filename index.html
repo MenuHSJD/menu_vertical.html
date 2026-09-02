@@ -305,14 +305,14 @@ POSTRE
 
 <div class="columna" id="menuCena">
 
-<div class="servicio">
-SOPAR / CENA
+<div class="servicio" id="tituloServicioCena">
+SOPAR
 </div>
 
 <div class="bloque">
 
-<div class="titulo-bloque primero">
-PRIMER / PRIMERO
+<div class="titulo-bloque primero" id="tituloPrimeroCena">
+PRIMER
 </div>
 
 <div class="cuerpo-bloque" id="cnp"></div>
@@ -321,8 +321,8 @@ PRIMER / PRIMERO
 
 <div class="bloque">
 
-<div class="titulo-bloque segundo">
-SEGON / SEGUNDO
+<div class="titulo-bloque segundo" id="tituloSegundoCena">
+SEGON
 </div>
 
 <div class="cuerpo-bloque" id="cns"></div>
@@ -331,10 +331,10 @@ SEGON / SEGUNDO
 
 <div class="bloque">
 
-<div class="titulo-bloque vegano">
-VEGÀ / VEGANO
+<div class="titulo-bloque vegano" id="tituloVeganoCena">
+VEGÀ
 </div>
-
+    
 <div class="cuerpo-bloque" id="cnveg"></div>
 
 </div>
@@ -462,6 +462,18 @@ if(idiomaActual === "CAT"){
     document.getElementById("tituloVegano").innerHTML =
     "VEGÀ";
 
+    document.getElementById("tituloServicioCena").innerHTML =
+    "SOPAR";
+
+    document.getElementById("tituloPrimeroCena").innerHTML =
+    "PRIMER";
+
+    document.getElementById("tituloSegundoCena").innerHTML =
+    "SEGON";
+
+    document.getElementById("tituloVeganoCena").innerHTML =
+    "VEGÀ";
+
 } else {
 
     document.getElementById("tituloServicio").innerHTML =
@@ -476,7 +488,19 @@ if(idiomaActual === "CAT"){
     document.getElementById("tituloVegano").innerHTML =
     "VEGANO";
 
-}    
+    document.getElementById("tituloServicioCena").innerHTML =
+    "CENA";
+
+    document.getElementById("tituloPrimeroCena").innerHTML =
+    "PRIMERO";
+
+    document.getElementById("tituloSegundoCena").innerHTML =
+    "SEGUNDO";
+
+    document.getElementById("tituloVeganoCena").innerHTML =
+    "VEGANO";
+
+}
 
 document.getElementById("fechaCabecera").innerHTML =
 "Hospital Sant Joan de Déu Barcelona · " +
@@ -599,7 +623,7 @@ pintar(filtrar("Cena","Segundo"));
 cnveg.innerHTML =
 pintar(filtrar("Cena","Vegano"));
 
-cpostre.innerHTML =
+cnpostre.innerHTML =
 idiomaActual === "CAT"
 ? '<div class="item">PREGUNTA PER EL PLAT</div>'
 : '<div class="item">PREGUNTA POR EL PLATO</div>';
