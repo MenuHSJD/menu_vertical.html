@@ -130,7 +130,7 @@ body{
 
 .primero{
     background:#E8D6EF;
-    color:#C76B00;
+    color:#6B1F72;
 }
 
 .segundo{
@@ -144,7 +144,7 @@ body{
 
 .postre{
     background:#F8D7D1;
-    color:#C76B00;
+    color:#D92D0F;
 }
 
 .cuerpo-bloque{
@@ -162,6 +162,7 @@ body{
     text-align:center;
     margin:12px 0;
     line-height:1.3;
+}
 }
 .tv-placeholder{
     width:100%;
@@ -257,14 +258,14 @@ body{
 <div class="pantalla">
 <div class="menu-panel">
 <div class="columna" id="menuComida">
-<div class="servicio" id="tituloServicio">
-DINAR
+<div class="servicio">
+DINAR / COMIDA
 </div>
 
 <div class="bloque">
 
 <div class="titulo-bloque primero">
-PRIMER
+PRIMER / PRIMERO
 </div>
 
 <div class="cuerpo-bloque" id="cp"></div>
@@ -274,7 +275,7 @@ PRIMER
 <div class="bloque">
 
 <div class="titulo-bloque segundo">
-SEGON
+SEGON / SEGUNDO
 </div>
 
 <div class="cuerpo-bloque" id="cs"></div>
@@ -284,7 +285,7 @@ SEGON
 <div class="bloque">
 
 <div class="titulo-bloque vegano">
-VEGÀ
+VEGÀ / VEGANO
 </div>
 
 <div class="cuerpo-bloque" id="cveg"></div>
@@ -310,8 +311,8 @@ SOPAR / CENA
 
 <div class="bloque">
 
-<div class="titulo-bloque primero"
-PRIMER
+<div class="titulo-bloque primero">
+PRIMER / PRIMERO
 </div>
 
 <div class="cuerpo-bloque" id="cnp"></div>
@@ -320,8 +321,8 @@ PRIMER
 
 <div class="bloque">
 
-<div class="titulo-bloque segundo"
-SEGON
+<div class="titulo-bloque segundo">
+SEGON / SEGUNDO
 </div>
 
 <div class="cuerpo-bloque" id="cns"></div>
@@ -330,8 +331,8 @@ SEGON
 
 <div class="bloque">
 
-<div class="titulo-bloque vegano"
-VEGÀ
+<div class="titulo-bloque vegano">
+VEGÀ / VEGANO
 </div>
 
 <div class="cuerpo-bloque" id="cnveg"></div>
@@ -377,7 +378,7 @@ POSTRE
 
 const URL_JSON =
 "https://script.google.com/macros/s/AKfycbx0JiNXhFy5NTiDU9Zhrp5Ym1OTsDEjnQswsmuRzpnZR6mMbGM-O_JHKwV4jxAYkpdcdQ/exec";
-let idiomaActual = "CAT";
+
 const CAT = {
 "Lunes":"DILLUNS",
 "Martes":"DIMARTS",
@@ -446,36 +447,6 @@ registros[0].Dia;
 
 document.getElementById("tituloSemana").innerHTML =
 "MENÚ CAFETERIA";
-if(idiomaActual === "CAT"){
-document.getElementById("tituloServicio").innerHTML =
-"DINAR";
-document.getElementById("tituloPrimero").innerHTML =
-"PRIMER";
-
-document.getElementById("tituloSegundo").innerHTML =
-"SEGON";
-
-document.getElementById("tituloVegano").innerHTML =
-"VEGÀ";
- 
-}else{
-
-    document.getElementById("tituloServicio").innerHTML =
-"COMIDA";
-
-    document.querySelector("#menuCena .servicio").innerHTML =
-    "CENA";
-
-    document.getElementById("tituloPrimero").innerHTML =
-    "PRIMERO";
-
-    document.getElementById("tituloSegundo").innerHTML =
-    "SEGUNDO";
-
-    document.getElementById("tituloVegano").innerHTML =
-    "VEGANO";
-
-}
 
 document.getElementById("fechaCabecera").innerHTML =
 "Hospital Sant Joan de Déu Barcelona · " +
@@ -532,12 +503,7 @@ function pintar(lista){
 return lista.map(x => {
 
 const nombre = (x.Plato_Cat || "").toUpperCase();
-const partes = (x.Plato_Cat || "").split("/");
 
-const texto =
-idiomaActual === "CAT"
-? (partes[0] || "")
-: (partes[1] || partes[0] || "");
 const tieneGluten =
 PALABRAS_GLUTEN.some(p =>
 nombre.includes(p));
@@ -549,9 +515,9 @@ nombre.includes(p));
 return `
 <div class="item item-con-iconos">
 
-  <span class="item-texto">
-    ${texto}
-</span>
+    <span class="item-texto">
+        ${x.Plato_Cat}
+    </span>
 
     ${
         tieneGluten
@@ -582,9 +548,7 @@ cveg.innerHTML =
 pintar(filtrar("Comida","Vegano"));
 
 cpostre.innerHTML =
-idiomaActual === "CAT"
-? '<div class="item">PREGUNTA PER EL PLAT</div>'
-: '<div class="item">PREGUNTA POR EL PLATO</div>';
+'<div class="item">Pregunta por el plato / Pregunta per el plat</div>';
 
 cnp.innerHTML =
 pintar(filtrar("Cena","Primero"));
@@ -596,30 +560,17 @@ cnveg.innerHTML =
 pintar(filtrar("Cena","Vegano"));
 
 cnpostre.innerHTML =
-idiomaActual === "CAT"
-? '<div class="item">PREGUNTA PER EL PLAT</div>'
-: '<div class="item">PREGUNTA POR EL PLATO</div>';
+'<div class="item">Pregunta por el plato / Pregunta per el plat</div>';
 
 }
 catch(e){
 console.error(e);
 }
 
+}
 
 cargar();
-
-setInterval(() => {
-
-    idiomaActual =
-        idiomaActual === "CAT"
-        ? "ES"
-        : "CAT";
-
-    cargar();
-
-
-},60000);
-
+setInterval(cargar,60000);
 
 </script>
 
