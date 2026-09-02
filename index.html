@@ -311,8 +311,8 @@ SOPAR / CENA
 
 <div class="bloque">
 
-<div class="titulo-bloque primero">
-PRIMER / PRIMERO
+<div class="titulo-bloque primero" id="tituloPrimero">
+PRIMER
 </div>
 
 <div class="cuerpo-bloque" id="cnp"></div>
@@ -321,8 +321,8 @@ PRIMER / PRIMERO
 
 <div class="bloque">
 
-<div class="titulo-bloque segundo">
-SEGON / SEGUNDO
+<div class="titulo-bloque segundo" id="tituloSegundo">
+SEGON
 </div>
 
 <div class="cuerpo-bloque" id="cns"></div>
@@ -331,8 +331,8 @@ SEGON / SEGUNDO
 
 <div class="bloque">
 
-<div class="titulo-bloque vegano">
-VEGÀ / VEGANO
+<div class="titulo-bloque vegano" id="tituloVegano">
+VEGÀ
 </div>
 
 <div class="cuerpo-bloque" id="cnveg"></div>
@@ -457,6 +457,15 @@ if(idiomaActual === "CAT"){
 
 }else{
 
+    document.getElementById("tituloPrimero").innerHTML =
+"PRIMERO";
+
+document.getElementById("tituloSegundo").innerHTML =
+"SEGUNDO";
+
+document.getElementById("tituloVegano").innerHTML =
+"VEGANO";
+
     document.querySelector("#menuComida .servicio").innerHTML =
     "COMIDA";
 
@@ -520,8 +529,12 @@ function pintar(lista){
 return lista.map(x => {
 
 const nombre = (x.Plato_Cat || "").toUpperCase();
-const texto = x.Plato_Cat;
+const partes = (x.Plato_Cat || "").split("/");
 
+const texto =
+idiomaActual === "CAT"
+? (partes[0] || "")
+: (partes[1] || partes[0] || "");
 const tieneGluten =
 PALABRAS_GLUTEN.some(p =>
 nombre.includes(p));
@@ -597,6 +610,14 @@ setInterval(() => {
         : "CAT";
 
     cargar();
+    document.getElementById("tituloPrimero").innerHTML =
+"PRIMER";
+
+document.getElementById("tituloSegundo").innerHTML =
+"SEGON";
+
+document.getElementById("tituloVegano").innerHTML =
+"VEGÀ";
 
 },60000);
 
