@@ -426,7 +426,7 @@ hoy.getHours() * 60 +
 hoy.getMinutes();
 
 const esComida =
-minutosActuales < 915;
+minutosActuales < 910;
 const yyyy = hoy.getFullYear();
 const mm = String(hoy.getMonth()+1).padStart(2,"0");
 const dd = String(hoy.getDate()).padStart(2,"0");
@@ -509,8 +509,17 @@ document.getElementById("fechaCabecera").innerHTML =
 dd + " " +
 MESES_CAT[hoy.getMonth()];
 
-document.getElementById("menuComida").style.display = "block";
-document.getElementById("menuCena").style.display = "none";
+if (esComida) {
+
+    document.getElementById("menuComida").style.display = "block";
+    document.getElementById("menuCena").style.display = "none";
+
+} else {
+
+    document.getElementById("menuComida").style.display = "none";
+    document.getElementById("menuCena").style.display = "block";
+
+}
 
 function filtrar(servicio,categoria){
 
