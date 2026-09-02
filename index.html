@@ -264,8 +264,8 @@ DINAR / COMIDA
 
 <div class="bloque">
 
-<div class="titulo-bloque primero">
-PRIMER / PRIMERO
+<div class="titulo-bloque primero" id="tituloPrimero">
+PRIMER
 </div>
 
 <div class="cuerpo-bloque" id="cp"></div>
@@ -274,8 +274,8 @@ PRIMER / PRIMERO
 
 <div class="bloque">
 
-<div class="titulo-bloque segundo">
-SEGON / SEGUNDO
+<div class="titulo-bloque segundo" id="tituloSegundo">
+SEGON
 </div>
 
 <div class="cuerpo-bloque" id="cs"></div>
@@ -284,8 +284,8 @@ SEGON / SEGUNDO
 
 <div class="bloque">
 
-<div class="titulo-bloque vegano">
-VEGÀ / VEGANO
+<div class="titulo-bloque vegano" id="tituloVegano">
+VEGÀ
 </div>
 
 <div class="cuerpo-bloque" id="cveg"></div>
@@ -455,22 +455,31 @@ if(idiomaActual === "CAT"){
     document.querySelector("#menuCena .servicio").innerHTML =
     "SOPAR";
 
-}else{
-
     document.getElementById("tituloPrimero").innerHTML =
-"PRIMERO";
+    "PRIMER";
 
-document.getElementById("tituloSegundo").innerHTML =
-"SEGUNDO";
+    document.getElementById("tituloSegundo").innerHTML =
+    "SEGON";
 
-document.getElementById("tituloVegano").innerHTML =
-"VEGANO";
+    document.getElementById("tituloVegano").innerHTML =
+    "VEGÀ";
+
+}else{
 
     document.querySelector("#menuComida .servicio").innerHTML =
     "COMIDA";
 
     document.querySelector("#menuCena .servicio").innerHTML =
     "CENA";
+
+    document.getElementById("tituloPrimero").innerHTML =
+    "PRIMERO";
+
+    document.getElementById("tituloSegundo").innerHTML =
+    "SEGUNDO";
+
+    document.getElementById("tituloVegano").innerHTML =
+    "VEGANO";
 
 }
 
@@ -579,7 +588,9 @@ cveg.innerHTML =
 pintar(filtrar("Comida","Vegano"));
 
 cpostre.innerHTML =
-'<div class="item">Pregunta per el plat / Pregunta por el plato</div>';
+idiomaActual === "CAT"
+? '<div class="item">PREGUNTA PER EL PLAT</div>'
+: '<div class="item">PREGUNTA POR EL PLATO</div>';
 
 cnp.innerHTML =
 pintar(filtrar("Cena","Primero"));
@@ -591,9 +602,10 @@ cnveg.innerHTML =
 pintar(filtrar("Cena","Vegano"));
 
 cnpostre.innerHTML =
-'<div class="item">Pregunta per el plat / Pregunta por el plato</div>';
-
-}
+idiomaActual === "CAT"
+? '<div class="item">PREGUNTA PER EL PLAT</div>'
+: '<div class="item">PREGUNTA POR EL PLATO</div>';
+    
 catch(e){
 console.error(e);
 }
