@@ -163,7 +163,6 @@ body{
     margin:12px 0;
     line-height:1.3;
 }
-}
 .tv-placeholder{
     width:100%;
     height:100%;
@@ -455,15 +454,17 @@ if(idiomaActual === "CAT"){
     document.querySelector("#menuCena .servicio").innerHTML =
     "SOPAR";
 
-    document.getElementById("tituloPrimero").innerHTML =
-    "PRIMER";
+ setInterval(() => {
 
-    document.getElementById("tituloSegundo").innerHTML =
-    "SEGON";
+    idiomaActual =
+        idiomaActual === "CAT"
+        ? "ES"
+        : "CAT";
 
-    document.getElementById("tituloVegano").innerHTML =
-    "VEGÀ";
+    cargar();
 
+},60000);
+``
 }else{
 
     document.querySelector("#menuComida .servicio").innerHTML =
@@ -605,12 +606,12 @@ cnpostre.innerHTML =
 idiomaActual === "CAT"
 ? '<div class="item">PREGUNTA PER EL PLAT</div>'
 : '<div class="item">PREGUNTA POR EL PLATO</div>';
-    
+
+}
 catch(e){
 console.error(e);
 }
 
-}
 
 cargar();
 
