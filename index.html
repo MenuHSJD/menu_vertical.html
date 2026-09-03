@@ -426,11 +426,17 @@ hoy.getHours() * 60 +
 hoy.getMinutes();
 
 const esComida =
+minutosActuales >= 420 &&
 minutosActuales < 910;
-const yyyy = hoy.getFullYear();
-const mm = String(hoy.getMonth()+1).padStart(2,"0");
-const dd = String(hoy.getDate()).padStart(2,"0");
+const fechaMenu = new Date(hoy);
 
+if (minutosActuales < 420) {
+    fechaMenu.setDate(fechaMenu.getDate() - 1);
+}
+
+const yyyy = fechaMenu.getFullYear();
+const mm = String(fechaMenu.getMonth()+1).padStart(2,"0");
+const dd = String(fechaMenu.getDate()).padStart(2,"0");
 const fechaISO =
 `${yyyy}-${mm}-${dd}`;
 
@@ -507,8 +513,7 @@ document.getElementById("fechaCabecera").innerHTML =
 (CAT[diaES] || diaES.toUpperCase()) +
 " " +
 dd + " " +
-MESES_CAT[hoy.getMonth()];
-
+MESES_CAT[fechaMenu.getMonth()]
 if (esComida) {
 
     document.getElementById("menuComida").style.display = "block";
@@ -573,7 +578,7 @@ const texto =
 idiomaActual === "CAT"
 ? (partes[0] || "")
 : (partes[1] || partes[0] || "");
-``
+
 
 const tieneGluten =
 String(x.Gluten || "")
