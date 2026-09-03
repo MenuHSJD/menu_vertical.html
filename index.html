@@ -356,18 +356,22 @@ POSTRE
 </div>
 </div>
 <div class="footer">
-    <img src="gluten.svg" class="icono-alergeno">
-    Pot contenir gluten · Puede contener gluten
 
-    &nbsp;&nbsp;&nbsp;
+    <div id="creditosAlergenos">
+        <img src="gluten.svg" class="icono-alergeno">
+        Puede contener gluten
 
-    <img src="lacteos.svg" class="icono-alergeno">
-    Pot contenir lactis · Puede contener lácteos
+        &nbsp;&nbsp;&nbsp;
 
-    <br>
+        <img src="lacteos.svg" class="icono-alergeno">
+        Puede contener lácteos
+    </div>
 
-    Bon profit · Buen provecho · Enjoy your meal · Bon appétit ·
-    شهية طيبة · 祝您用餐愉快 · 맛있게 드세요 · 召し上がれ
+    <div id="creditosFinales">
+        Buen provecho · Enjoy your meal · Bon appétit ·
+        شهية طيبة · 祝您用餐愉快 · 맛있게 드세요 · 召し上がれ
+    </div>
+
 </div>
 
 </div>
@@ -479,6 +483,16 @@ if(idiomaActual === "CAT"){
 
     document.getElementById("tituloVeganoCena").innerHTML =
     "VEGÀ";
+    document.getElementById("creditosAlergenos").innerHTML =
+'<img src="gluten.svg" class="icono-alergeno"> ' +
+'Pot contenir gluten ' +
+'&nbsp;&nbsp;&nbsp; ' +
+'<img src="lacteos.svg" class="icono-alergeno"> ' +
+'Pot contenir lactis';
+
+document.getElementById("creditosFinales").innerHTML =
+'Bon profit · Enjoy your meal · Bon appétit · ' +
+'شهية طيبة · 祝您用餐愉快 · 맛있게 드세요 · 召し上がれ';
 
 } else {
 
@@ -505,6 +519,17 @@ if(idiomaActual === "CAT"){
 
     document.getElementById("tituloVeganoCena").innerHTML =
     "VEGANO";
+
+document.getElementById("creditosAlergenos").innerHTML =
+'<img src="gluten.svg" class="icono-alergeno"> ' +
+'Puede contener gluten ' +
+'&nbsp;&nbsp;&nbsp; ' +
+'<img src="lacteos.svg" class="icono-alergeno"> ' +
+'Puede contener lácteos';
+
+document.getElementById("creditosFinales").innerHTML =
+'Buen provecho · Enjoy your meal · Bon appétit · ' +
+'شهية طيبة · 祝您用餐愉快 · 맛있게 드세요 · 召し上がれ';
 
 }
 
@@ -576,9 +601,8 @@ const partes =
 
 const texto =
 idiomaActual === "CAT"
-? (partes[0] || "")
-: (partes[1] || partes[0] || "");
-
+? (partes[0] || "").trim()
+: (partes.slice(1).join("/") || partes[0] || "").trim();
 
 const tieneGluten =
 String(x.Gluten || "")
