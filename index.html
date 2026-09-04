@@ -177,8 +177,16 @@ body{
     margin:0 auto;
 }
 .postre-cuerpo{
-    height:70px;
-    padding:6px;
+    display:none;
+}
+    .bloque-postre{
+    background:transparent;
+    box-shadow:none;
+    margin-bottom:8px;
+}
+
+.bloque-postre .titulo-bloque{
+    border-radius:14px;
 }
 .header-texto{
     flex:1;
@@ -261,7 +269,7 @@ body{
 DINAR
 </div>
 
-<div class="bloque">
+<div class="bloque bloque-postre">
 
 <div class="titulo-bloque primero" id="tituloPrimero">
 PRIMER
@@ -649,10 +657,7 @@ pintar(filtrar("Comida","Segundo"));
 cveg.innerHTML =
 pintar(filtrar("Comida","Vegano"));
 
-cpostre.innerHTML =
-idiomaActual === "CAT"
-? '<div class="item">PREGUNTA PER EL PLAT</div>'
-: '<div class="item">PREGUNTA POR EL PLATO</div>';
+
 
 cnp.innerHTML =
 pintar(filtrar("Cena","Primero"));
@@ -663,10 +668,6 @@ pintar(filtrar("Cena","Segundo"));
 cnveg.innerHTML =
 pintar(filtrar("Cena","Vegano"));
 
-cnpostre.innerHTML =
-idiomaActual === "CAT"
-? '<div class="item">PREGUNTA PER EL PLAT</div>'
-: '<div class="item">PREGUNTA POR EL PLATO</div>';
 
 }
 catch(e){
