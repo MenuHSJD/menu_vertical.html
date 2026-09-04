@@ -683,18 +683,24 @@ console.error(e);
 
 }
 
-cargar();
+function actualizarIdiomaSincronizado() {
 
-setInterval(() => {
+    const ahora = new Date();
+
+    const bloque15 =
+        Math.floor(ahora.getTime() / 15000);
 
     idiomaActual =
-        idiomaActual === "CAT"
-        ? "ES"
-        : "CAT";
+        (bloque15 % 2 === 0)
+        ? "CAT"
+        : "ES";
 
     cargar();
+}
 
-},15000);
+actualizarIdiomaSincronizado();
+
+setInterval(actualizarIdiomaSincronizado, 1000);
 </script>
 
 </body>
