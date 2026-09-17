@@ -455,8 +455,6 @@ function semanaMes(fecha){
 }
 function mostrarPacks() {
 
-    menuComida.style.display = "none";
-    menuCena.style.display = "none";
     pantallaPacks.style.display = "block";
 
     if (idiomaActual === "CAT") {
@@ -464,14 +462,13 @@ function mostrarPacks() {
         tituloPacks.innerHTML =
         "PACKS ESMORZARS";
 
-        pack1.innerHTML =
-        "Cafè amb llet + Pasta + Suc natural";
-
-        pack2.innerHTML =
-        "Cafè amb llet + Mini entrepà + Suc natural";
-
+      pack1.innerHTML =
+'<div class="item">Cafè amb llet + Pasta + Suc natural</div><div class="item">2,84 €</div>';
+       pack2.innerHTML =
+'<div class="item">Cafè amb llet + Mini entrepà + Suc natural</div><div class="item">3,16 €</div>';
         pack3.innerHTML =
-        "Cafè amb llet + Entrepà calent + Suc natural";
+        pack3.innerHTML =
+'<div class="item">Cafè amb llet + Entrepà calent + Suc natural</div><div class="item">4,25 €</div>';
 
     } else {
 
@@ -479,13 +476,13 @@ function mostrarPacks() {
         "PACKS ALMUERZOS";
 
         pack1.innerHTML =
-        "Café con leche + Pasta + Zumo natural";
+      '<div class="item">Cafè amb llet + Pasta + Suc natural</div><div class="item">2,84 €</div>';
 
         pack2.innerHTML =
-        "Café con leche + Mini bocadillo + Zumo natural";
+        '<div class="item">Cafè amb llet + Mini entrepà + Suc natural</div><div class="item">3,16 €</div>';
 
         pack3.innerHTML =
-        "Café con leche + Bocadillo caliente + Zumo natural";
+       '<div class="item">Cafè amb llet + Entrepà calent + Suc natural</div><div class="item">4,25 €</div>';
 
     }
 }
@@ -760,14 +757,15 @@ function actualizarIdiomaSincronizado() {
         return;
     }
 
-    pantallaPacks.style.display = "none";
+   idiomaActual =
+    (bloque % 2 === 0)
+    ? "CAT"
+    : "ES";
 
-    idiomaActual =
-        (bloque % 2 === 0)
-        ? "CAT"
-        : "ES";
+cargar();
 
-    cargar();
+pantallaPacks.style.display = "none";
+``
 }
 
 actualizarIdiomaSincronizado();
