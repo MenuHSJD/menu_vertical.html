@@ -186,15 +186,32 @@ document.getElementById("pack3").innerHTML =
 
 function comprobarRetorno(){
 
-const bloque =
-Math.floor(Date.now()/15000)%6;
+    const bloque =
+    Math.floor(Date.now()/15000)%6;
 
-if(bloque<4){
+    if(bloque === 4){
 
-window.location.href="index.html";
+        if(window.location.search !== "?lang=cat"){
 
-}
+            window.location.href =
+            "packs.html?lang=cat";
+        }
 
+        return;
+    }
+
+    if(bloque === 5){
+
+        if(window.location.search !== "?lang=es"){
+
+            window.location.href =
+            "packs.html?lang=es";
+        }
+
+        return;
+    }
+
+    window.location.href = "index.html";
 }
 
 setInterval(comprobarRetorno,1000);
