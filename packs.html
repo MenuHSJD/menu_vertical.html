@@ -7,22 +7,45 @@
 
 <style>
 
+@font-face {
+    font-family:'Ciutadella';
+    src:url('Ciutadella-Regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-family:'Ciutadella';
+    src:url('Ciutadella-SemiBold.woff2') format('woff2');
+    font-weight:600;
+}
+
 body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#f5f5f5;
+    margin:0;
+    background:transparent;
+    font-family:'Ciutadella', Arial, sans-serif;
 }
-
 .header{
-background:#000;
-color:#fff;
-text-align:center;
-padding:40px;
+    background:#000000;
+    color:white;
+    padding:25px 30px;
+    text-align:center;
 }
 
-h1{
-font-size:60px;
-margin:0;
+  .header-texto{
+    flex:1;
+}
+
+.subtitulo{
+    font-size:30px;
+    opacity:0.95;
+}
+
+.logo-sjd{
+    display:block;
+    max-width:300px;
+    max-height:120px;
+    width:auto;
+    height:auto;
+    margin:15px auto;
 }
 
 .pack{
@@ -43,11 +66,12 @@ font-weight:bold;
 }
 
 .texto{
-padding:40px;
-font-size:40px;
-text-align:center;
+    padding:40px;
+    font-size:34px;
+    font-weight:600;
+    text-align:center;
+    text-transform:uppercase;
 }
-
 </style>
 </head>
 
@@ -55,27 +79,33 @@ text-align:center;
 
 <div class="header">
 
-<h1 id="tituloPrincipal">
-PACKS ESMORZARS
-</h1>
+    <div class="header-texto">
+
+        <div class="titulo" id="tituloPrincipal">
+            PACKS ESMORZARS
+        </div>
+
+        <div class="subtitulo">
+            Hospital Sant Joan de Déu Barcelona
+        </div>
+
+    </div>
+
+    ./SJD%20MARCA%20NEGATIU%20H-01.png
 
 </div>
-
 <div class="pack">
-<div class="titulo">PACK Nº1</div>
-
+<div class="titulo">PACK 1</div>
 <div class="texto" id="pack1"></div>
 </div>
 
 <div class="pack">
-<div class="titulo">PACK Nº2</div>
-
+<div class="titulo">PACK 2</div>
 <div class="texto" id="pack2"></div>
 </div>
 
 <div class="pack">
-<div class="titulo">PACK Nº3</div>
-
+<div class="titulo">PACK 3</div>
 <div class="texto" id="pack3"></div>
 </div>
 
