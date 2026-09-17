@@ -694,17 +694,12 @@ function actualizarIdiomaSincronizado() {
     const paginaActual =
         window.location.pathname.split('/').pop();
 
-    if (bloque === 4 && paginaActual !== "packs.html") {
+if ((bloque === 4 || bloque === 5) &&
+    paginaActual !== "packs.html") {
 
-        window.location.href = "packs.html?lang=cat";
-        return;
-    }
-
-    if (bloque === 5 && paginaActual !== "packs.html") {
-
-        window.location.href = "packs.html?lang=es";
-        return;
-    }
+    window.location.href = "packs.html";
+    return;
+}
 
     idiomaActual =
         (bloque % 2 === 0)
