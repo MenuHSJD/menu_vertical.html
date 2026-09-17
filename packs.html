@@ -191,33 +191,44 @@ function comprobarRetorno(){
     const bloque =
     Math.floor(Date.now()/15000)%6;
 
+    if(bloque < 4){
+
+        window.location.href = "index.html";
+    }
+
     if(bloque === 4){
 
-        if(window.location.search !== "?lang=cat"){
+        document.getElementById("tituloPrincipal").innerHTML =
+        "PACKS ESMORZARS";
 
-            window.location.href =
-            "packs.html?lang=cat";
-        }
+        document.getElementById("pack1").innerHTML =
+        "Cafè amb llet + Pasta + Suc natural";
 
-        return;
+        document.getElementById("pack2").innerHTML =
+        "Cafè amb llet + Mini entrepà + Suc natural";
+
+        document.getElementById("pack3").innerHTML =
+        "Cafè amb llet + Entrepà calent + Suc natural";
     }
 
     if(bloque === 5){
 
-        if(window.location.search !== "?lang=es"){
+        document.getElementById("tituloPrincipal").innerHTML =
+        "PACKS ALMUERZOS";
 
-            window.location.href =
-            "packs.html?lang=es";
-        }
+        document.getElementById("pack1").innerHTML =
+        "Café con leche + Pasta + Zumo natural";
 
-        return;
+        document.getElementById("pack2").innerHTML =
+        "Café con leche + Mini bocadillo + Zumo natural";
+
+        document.getElementById("pack3").innerHTML =
+        "Café con leche + Bocadillo caliente + Zumo natural";
     }
-
-    window.location.href = "index.html";
 }
 
+comprobarRetorno();
 setInterval(comprobarRetorno,1000);
-
 </script>
 
 </body>
