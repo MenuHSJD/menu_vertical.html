@@ -691,19 +691,17 @@ function actualizarIdiomaSincronizado() {
     const bloque =
         Math.floor(Date.now() / 15000) % 6;
 
-    if (bloque === 4 || bloque === 5) {
+   if (bloque === 4) {
 
-        const idioma =
-            (bloque === 4)
-            ? "cat"
-            : "es";
+    window.location.href = "packs.html?lang=cat";
+    return;
+}
 
-        window.location.href =
-            "packs.html?lang=" + idioma;
+if (bloque === 5) {
 
-        return;
-    }
-
+    window.location.href = "packs.html?lang=es";
+    return;
+}
     idiomaActual =
         (bloque % 2 === 0)
         ? "CAT"
