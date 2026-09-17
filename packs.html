@@ -33,6 +33,11 @@ body{
     margin:0;
     background:transparent;
     font-family:'Ciutadella', Arial, sans-serif;
+
+    .container{
+    width:100%;
+    padding:20px;
+}
 }
 .header{
     background:#000000;
@@ -81,14 +86,20 @@ font-size:36px;
 font-weight:600;
 text-align:center;
 }
-``
 
 .texto{
-    padding:40px;
+    padding:25px;
+    min-height:260px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
     font-size:34px;
     font-weight:600;
-    text-align:center;
     text-transform:uppercase;
+    text-align:center;
+    line-height:1.25;
 }
 </style>
 </head>
@@ -110,22 +121,29 @@ text-align:center;
     </div>
 
 <img
-    src="./SJD%20MARCA%20NEGATIU%20H-
+    src="./SJD%20MARCA%20NEGATIU%20H-01.png"
+    class="logo-sjd"
+    alt="Logo SJD">
+
+    <div class="container">
+        
 </div>
 <div class="pack">
-<div class="titulo">PACK 1</div>
-<div class="texto" id="pack1"></div>
+<div class="titulo-pack">PACK 1</div>
+    <div class="texto" id="pack1"></div>
 </div>
 
 <div class="pack">
-<div class="titulo">PACK 2</div>
+<div class="titulo-pack">PACK 2</div>>
 <div class="texto" id="pack2"></div>
 </div>
 
 <div class="pack">
-<div class="titulo">PACK 3</div>
+<div class="titulo-pack">PACK 3</div>
+``
 <div class="texto" id="pack3"></div>
 </div>
+</div>   
 
 <script>
 
