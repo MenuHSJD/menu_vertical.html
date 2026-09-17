@@ -320,7 +320,30 @@ VEGÀ
 
 </div>
 </div>
+    
+<div class="columna" id="pantallaPacks" style="display:none;">
 
+    <div class="servicio" id="tituloPacks">
+        PACKS ESMORZARS
+    </div>
+
+    <div class="bloque">
+        <div class="titulo-bloque primero">PACK 1</div>
+        <div class="cuerpo-bloque" id="pack1"></div>
+    </div>
+
+    <div class="bloque">
+        <div class="titulo-bloque segundo">PACK 2</div>
+        <div class="cuerpo-bloque" id="pack2"></div>
+    </div>
+
+    <div class="bloque">
+        <div class="titulo-bloque primero">PACK 3</div>
+        <div class="cuerpo-bloque" id="pack3"></div>
+    </div>
+
+</div>
+    
 <div class="columna" id="menuCena">
 
 <div class="servicio" id="tituloServicioCena">
@@ -430,7 +453,42 @@ const MESES_CAT = [
 function semanaMes(fecha){
     return Math.ceil(fecha.getDate()/7);
 }
+function mostrarPacks() {
 
+    menuComida.style.display = "none";
+    menuCena.style.display = "none";
+    pantallaPacks.style.display = "block";
+
+    if (idiomaActual === "CAT") {
+
+        tituloPacks.innerHTML =
+        "PACKS ESMORZARS";
+
+        pack1.innerHTML =
+        "Cafè amb llet + Pasta + Suc natural";
+
+        pack2.innerHTML =
+        "Cafè amb llet + Mini entrepà + Suc natural";
+
+        pack3.innerHTML =
+        "Cafè amb llet + Entrepà calent + Suc natural";
+
+    } else {
+
+        tituloPacks.innerHTML =
+        "PACKS ALMUERZOS";
+
+        pack1.innerHTML =
+        "Café con leche + Pasta + Zumo natural";
+
+        pack2.innerHTML =
+        "Café con leche + Mini bocadillo + Zumo natural";
+
+        pack3.innerHTML =
+        "Café con leche + Bocadillo caliente + Zumo natural";
+
+    }
+}
 async function cargar(){
 
 try{
@@ -688,13 +746,24 @@ console.error(e);
 
 function actualizarIdiomaSincronizado() {
 
-    const ahora = new Date();
+    const bloque =
+        Math.floor(Date.now() / 15000) % 6;
 
-    const bloque15 =
-        Math.floor(ahora.getTime() / 15000);
+    if (bloque === 4 || bloque === 5) {
+
+        idiomaActual =
+        (bloque === 4)
+        ? "CAT"
+        : "ES";
+
+        mostrarPacks();
+        return;
+    }
+
+    pantallaPacks.style.display = "none";
 
     idiomaActual =
-        (bloque15 % 2 === 0)
+        (bloque % 2 === 0)
         ? "CAT"
         : "ES";
 
