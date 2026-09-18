@@ -783,8 +783,9 @@ pintar(filtrar("Cena","Vegano"));
 
 }
 }
+}
 catch(e){
-    console.error(e);
+    console.error("Error cargando el menú:", e);
 }
 
 }
@@ -818,13 +819,13 @@ function mostrarMenuInstantaneo() {
 }
 
 
-function actualizarPantalla() {
+async function actualizarPantalla() {
 
     if (bloqueActual === 0) {
 
         idiomaActual = "ES";
         mostrarMenuInstantaneo();
-        cargar();
+        await cargar();
         return;
     }
 
@@ -832,7 +833,7 @@ function actualizarPantalla() {
 
         idiomaActual = "CAT";
         mostrarMenuInstantaneo();
-        cargar();
+        await cargar();
         return;
     }
 
@@ -840,7 +841,7 @@ function actualizarPantalla() {
 
         idiomaActual = "ES";
         mostrarMenuInstantaneo();
-        cargar();
+        await cargar();
         return;
     }
 
@@ -848,7 +849,7 @@ function actualizarPantalla() {
 
         idiomaActual = "CAT";
         mostrarMenuInstantaneo();
-        cargar();
+        await cargar();
         return;
     }
 
@@ -867,28 +868,28 @@ function actualizarPantalla() {
 }
 
 
-function programarCambioExacto() {
+function programarSiguienteCambio() {
 
     const ahora = performance.now();
 
-    while (ahora >= siguienteCambio) {
+    if (ahora >= siguienteCambio) {
 
         bloqueActual =
             (bloqueActual + 1) % 6;
 
         siguienteCambio += 15000;
-    }
 
-    actualizarPantalla();
+        actualizarPantalla();
+    }
 
     const espera =
         Math.max(
-            0,
+            1,
             siguienteCambio - performance.now()
         );
 
     setTimeout(
-        programarCambioExacto,
+        programarSiguienteCambio,
         espera
     );
 }
@@ -897,8 +898,9 @@ function programarCambioExacto() {
 async function iniciarSecuencia() {
 
     bloqueActual = 0;
-
     idiomaActual = "ES";
+
+    siguienteCambio = Infinity;
 
     mostrarMenuInstantaneo();
 
@@ -908,7 +910,7 @@ async function iniciarSecuencia() {
         performance.now() + 15000;
 
     setTimeout(
-        programarCambioExacto,
+        programarSiguienteCambio,
         15000
     );
 }
