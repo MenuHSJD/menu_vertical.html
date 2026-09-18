@@ -429,6 +429,18 @@ let siguienteCambio = 0;
 
 let datosCache = null;
 let descargaEnCurso = null;
+let ultimoBloqueMostrado = -1;
+
+try {
+    const cacheGuardada =
+        localStorage.getItem("menuCafeteriaCache");
+
+    if (cacheGuardada) {
+        datosCache = JSON.parse(cacheGuardada);
+    }
+} catch (e) {
+    console.error("No se pudo recuperar la caché:", e);
+}
 const CAT = {
 "Lunes":"DILLUNS",
 "Martes":"DIMARTS",
@@ -492,37 +504,79 @@ creditosAlergenos.style.display = "none";
     '<div class="item">Café con leche + Bocadillo caliente + Zumo natural</div><div class="item">4,25 €</div>';
 
 }
+async function actualizarDatosEnSegundoPlano() {
 
+    if (descargaEnCurso) {
+        return descargaEnCurso;
+    }
+
+    descargaEnCurso =
+        fetch(URL_JSON + "?t=" + Date.now())
+        .then(respuesta => {
+
+            if (!respuesta.ok) {
+                throw new Error(
+                    "Error HTTP: " + respuesta.status
+                );
+            }
+
+            return respuesta.json();
+        })
+        .then(datos => {
+
+            if (!Array.isArray(datos)) {
+                throw new Error(
+                    "El JSON recibido no es válido"
+                );
+            }
+
+            datosCache = datos;
+
+            try {
+                localStorage.setItem(
+                    "menuCafeteriaCache",
+                    JSON.stringify(datos)
+                );
+            } catch (e) {
+                console.error(
+                    "No se pudo guardar la caché:",
+                    e
+                );
+            }
+
+            if (
+                bloqueActual !== 4 &&
+                bloqueActual !== 5
+            ) {
+                cargar();
+            }
+
+            return datos;
+        })
+        .catch(error => {
+
+            console.error(
+                "Error actualizando los datos:",
+                error
+            );
+
+            return datosCache;
+        })
+        .finally(() => {
+
+            descargaEnCurso = null;
+        });
+
+    return descargaEnCurso;
+}
 }
 async function cargar(){
 
 try{
 
 if (!datosCache) {
-
-    if (!descargaEnCurso) {
-
-        descargaEnCurso =
-        fetch(URL_JSON + "?t=" + Date.now())
-        .then(respuesta => respuesta.json())
-        .then(datos => {
-
-            datosCache = datos;
-            return datos;
-
-        })
-        .finally(() => {
-
-            descargaEnCurso = null;
-
-        });
-    }
-
-    await descargaEnCurso;
-}
-
-if (!datosCache) {
     return;
+}
 }
 
 /* Si durante la descarga hemos entrado en Packs,
@@ -863,56 +917,42 @@ async function actualizarPantalla() {
     }
 }
 
+function comprobarBloqueActual() {
 
-function programarSiguienteCambio() {
+    const nuevoBloque =
+        Math.floor(Date.now() / 15000) % 6;
 
-    const ahora = performance.now();
-
-    if (ahora >= siguienteCambio) {
-
-        bloqueActual =
-            (bloqueActual + 1) % 6;
-
-        siguienteCambio += 15000;
-
-        actualizarPantalla();
+    if (nuevoBloque === ultimoBloqueMostrado) {
+        return;
     }
 
-    const espera =
-        Math.max(
-            1,
-            siguienteCambio - performance.now()
-        );
+    ultimoBloqueMostrado = nuevoBloque;
+    bloqueActual = nuevoBloque;
 
-    setTimeout(
-        programarSiguienteCambio,
-        espera
-    );
+    actualizarPantalla();
 }
 
 
-async function iniciarSecuencia() {
+function iniciarSecuencia() {
 
-    bloqueActual = 0;
-    idiomaActual = "ES";
+    comprobarBloqueActual();
 
-    siguienteCambio = Infinity;
+    actualizarDatosEnSegundoPlano();
 
-    mostrarMenuInstantaneo();
+    setInterval(
+        comprobarBloqueActual,
+        250
+    );
 
-    await cargar();
-
-    siguienteCambio =
-        performance.now() + 15000;
-
-    setTimeout(
-        programarSiguienteCambio,
-        15000
+    setInterval(
+        actualizarDatosEnSegundoPlano,
+        300000
     );
 }
 
 
 iniciarSecuencia();
+
 
 </script>
 </body>
