@@ -425,7 +425,7 @@ const URL_JSON =
 
 let idiomaActual = "CAT";
 let bloqueActual = 0;
-``
+
 const CAT = {
 "Lunes":"DILLUNS",
 "Martes":"DIMARTS",
@@ -768,14 +768,14 @@ function actualizarIdiomaSincronizado() {
         return;
     }
 
-   idiomaActual =
-    (bloque % 2 === 0)
+idiomaActual =
+    (bloqueActual % 2 === 0)
     ? "CAT"
     : "ES";
 
 cargar();
 
-``
+
 }
 
 actualizarIdiomaSincronizado();
