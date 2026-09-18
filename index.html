@@ -460,7 +460,7 @@ function mostrarPacks() {
     menuComida.style.display = "none";
     menuCena.style.display = "none";
     pantallaPacks.style.display = "block";
-
+creditosAlergenos.style.display = "none";
     if (idiomaActual === "CAT") {
 
         tituloPacks.innerHTML =
@@ -616,12 +616,26 @@ document.getElementById("fechaCabecera").innerHTML =
 " " +
 dd + " " +
 MESES_CAT[fechaMenu.getMonth()];
-
+    
+creditosAlergenos.style.display = "block";
 if (bloqueActual !== 2 && bloqueActual !== 3) {
 
     pantallaPacks.style.display = "none";
 
     if (esComida) {
+
+        menuComida.style.display = "block";
+        menuCena.style.display = "none";
+
+    } else {
+
+        menuComida.style.display = "none";
+        menuCena.style.display = "block";
+
+    }
+
+}
+
 
         document.getElementById("menuComida").style.display = "block";
         document.getElementById("menuCena").style.display = "none";
@@ -768,7 +782,7 @@ function actualizarIdiomaSincronizado() {
         return;
     }
 
-    pantallaPacks.style.display = "none";
+
 
     idiomaActual =
     (bloqueActual === 0)
