@@ -474,21 +474,22 @@ function mostrarPacks() {
         pack3.innerHTML =
 '<div class="item">Cafè amb llet + Entrepà calent + Suc natural</div><div class="item">4,25 €</div>';
 
-    } else {
+   } else {
 
-        tituloPacks.innerHTML =
-        "PACKS ALMUERZOS";
+    tituloPacks.innerHTML =
+    "PACKS ALMUERZOS";
 
-        pack1.innerHTML =
-      '<div class="item">Cafè amb llet + Pasta + Suc natural</div><div class="item">2,84 €</div>';
+    pack1.innerHTML =
+    '<div class="item">Café con leche + Pasta + Zumo natural</div><div class="item">2,84 €</div>';
 
-        pack2.innerHTML =
-        '<div class="item">Cafè amb llet + Mini entrepà + Suc natural</div><div class="item">3,16 €</div>';
+    pack2.innerHTML =
+    '<div class="item">Café con leche + Mini bocadillo + Zumo natural</div><div class="item">3,16 €</div>';
 
-        pack3.innerHTML =
-       '<div class="item">Cafè amb llet + Entrepà calent + Suc natural</div><div class="item">4,25 €</div>';
+    pack3.innerHTML =
+    '<div class="item">Café con leche + Bocadillo caliente + Zumo natural</div><div class="item">4,25 €</div>';
 
-    }
+}
+
 }
 async function cargar(){
 
@@ -758,10 +759,10 @@ function actualizarIdiomaSincronizado() {
 
   if (bloqueActual === 4 || bloqueActual === 5) {
 
-        idiomaActual =
-       (bloqueActual === 4)
-        ? "CAT"
-        : "ES";
+      idiomaActual =
+    (bloqueActual % 2 === 0)
+    ? "CAT"
+    : "ES";
 
         mostrarPacks();
         return;
