@@ -425,6 +425,7 @@ const URL_JSON =
 
 let idiomaActual = "CAT";
 let bloqueActual = 0;
+let siguienteCambio = 0;
 
 const CAT = {
 "Lunes":"DILLUNS",
@@ -780,10 +781,7 @@ function mostrarMenuInstantaneo() {
         menuCena.style.display = "block";
     }
 }
-function actualizarIdiomaSincronizado() {
-
-    bloqueActual =
-        Math.floor(Date.now() / 15000) % 6;
+function actualizarPantalla() {
 
     if (bloqueActual === 4 || bloqueActual === 5) {
 
@@ -806,7 +804,36 @@ function actualizarIdiomaSincronizado() {
 }
 
 
-function programarSiguienteCambio() {
+function ejecutarCambio() {
+
+    bloqueActual =
+        (bloqueActual + 1) % 6;
+
+    actualizarPantalla();
+
+    siguienteCambio += 15000;
+
+    const espera =
+        Math.max(0, siguienteCambio - performance.now());
+
+    setTimeout(ejecutarCambio, espera);
+}
+
+
+function iniciarSecuencia() {
+
+    bloqueActual = 0;
+
+    actualizarPantalla();
+
+    siguienteCambio =
+        performance.now() + 15000;
+
+    setTimeout(ejecutarCambio, 15000);
+}
+
+
+iniciarSecuencia();
 
     actualizarIdiomaSincronizado();
 
