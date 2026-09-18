@@ -617,7 +617,7 @@ document.getElementById("fechaCabecera").innerHTML =
 dd + " " +
 MESES_CAT[fechaMenu.getMonth()];
 
-if (bloqueActual !== 4 && bloqueActual !== 5) {
+if (bloqueActual !== 2 && bloqueActual !== 3) {
 
     pantallaPacks.style.display = "none";
 
@@ -755,26 +755,28 @@ console.error(e);
 function actualizarIdiomaSincronizado() {
 
     bloqueActual =
-        Math.floor(Date.now() / 15000) % 6;
+    Math.floor(Date.now() / 15000) % 4;
 
-  if (bloqueActual === 4 || bloqueActual === 5) {
+    if (bloqueActual === 2 || bloqueActual === 3) {
 
-      idiomaActual =
-    (bloqueActual % 2 === 0)
-    ? "CAT"
-    : "ES";
+        idiomaActual =
+        (bloqueActual === 2)
+        ? "CAT"
+        : "ES";
 
         mostrarPacks();
         return;
     }
 
-idiomaActual =
-    (bloqueActual % 2 === 0)
+    pantallaPacks.style.display = "none";
+
+    idiomaActual =
+    (bloqueActual === 0)
     ? "CAT"
     : "ES";
 
-cargar();
-
+    cargar();
+}
 
 }
 
