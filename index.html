@@ -500,10 +500,13 @@ creditosAlergenos.style.display = "none";
     pack2.innerHTML =
     '<div class="item">Café con leche + Mini bocadillo + Zumo natural</div><div class="item">3,16 €</div>';
 
-    pack3.innerHTML =
+      pack3.innerHTML =
     '<div class="item">Café con leche + Bocadillo caliente + Zumo natural</div><div class="item">4,25 €</div>';
 
+    }
+
 }
+    
 async function actualizarDatosEnSegundoPlano() {
 
     if (descargaEnCurso) {
@@ -577,7 +580,7 @@ try{
 if (!datosCache) {
     return;
 }
-}
+
 
 /* Si durante la descarga hemos entrado en Packs,
    no se modifica el menú visible */
