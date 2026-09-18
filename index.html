@@ -835,18 +835,7 @@ function iniciarSecuencia() {
 
 iniciarSecuencia();
 
-    actualizarIdiomaSincronizado();
 
-    const espera =
-        15000 - (Date.now() % 15000);
-
-    setTimeout(
-        programarSiguienteCambio,
-        espera
-    );
-}
-
-programarSiguienteCambio();
 </script>
 
 </body>
