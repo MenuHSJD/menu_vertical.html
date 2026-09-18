@@ -617,8 +617,9 @@ document.getElementById("fechaCabecera").innerHTML =
 dd + " " +
 MESES_CAT[fechaMenu.getMonth()];
     
-creditosAlergenos.style.display = "block";
 if (bloqueActual !== 2 && bloqueActual !== 3) {
+    creditosAlergenos.style.display = "block";
+}if (bloqueActual !== 2 && bloqueActual !== 3) {
 
     pantallaPacks.style.display = "none";
 
@@ -784,7 +785,21 @@ function actualizarIdiomaSincronizado() {
 
 actualizarIdiomaSincronizado();
 
-setInterval(actualizarIdiomaSincronizado, 1000);
+actualizarIdiomaSincronizado();
+
+const ahora = Date.now();
+const espera = 15000 - (ahora % 15000);
+
+setTimeout(() => {
+
+    actualizarIdiomaSincronizado();
+
+    setInterval(
+        actualizarIdiomaSincronizado,
+        15000
+    );
+
+}, espera);
 </script>
 
 </body>
