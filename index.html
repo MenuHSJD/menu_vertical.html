@@ -427,6 +427,8 @@ let idiomaActual = "CAT";
 let bloqueActual = 0;
 let siguienteCambio = 0;
 
+let datosCache = null;
+let descargaEnCurso = null;
 const CAT = {
 "Lunes":"DILLUNS",
 "Martes":"DIMARTS",
@@ -496,11 +498,40 @@ async function cargar(){
 
 try{
 
-const respuesta =
-await fetch(URL_JSON + "?t=" + Date.now());
+if (!datosCache) {
 
-const datos =
-await respuesta.json();
+    if (!descargaEnCurso) {
+
+        descargaEnCurso =
+        fetch(URL_JSON + "?t=" + Date.now())
+        .then(respuesta => respuesta.json())
+        .then(datos => {
+
+            datosCache = datos;
+            return datos;
+
+        })
+        .finally(() => {
+
+            descargaEnCurso = null;
+
+        });
+    }
+
+    await descargaEnCurso;
+}
+
+if (!datosCache) {
+    return;
+}
+
+/* Si durante la descarga hemos entrado en Packs,
+   no se modifica el menú visible */
+if (bloqueActual === 4 || bloqueActual === 5) {
+    return;
+}
+
+const datos = datosCache;
 
 const hoy = new Date();
 const minutosActuales =
@@ -756,85 +787,7 @@ console.error(e);
 }
 
 }
-function mostrarMenuInstantaneo() {
-
-    const ahora = new Date();
-
-    const minutosActuales =
-        ahora.getHours() * 60 + ahora.getMinutes();
-
-    const esComida =
-        minutosActuales >= 420 &&
-        minutosActuales < 910;
-
-    pantallaPacks.style.display = "none";
-    creditosAlergenos.style.display = "block";
-
-    if (esComida) {
-
-        menuComida.style.display = "block";
-        menuCena.style.display = "none";
-
-    } else {
-
-        menuComida.style.display = "none";
-        menuCena.style.display = "block";
-    }
 }
-function actualizarPantalla() {
-
-    if (bloqueActual === 4 || bloqueActual === 5) {
-
-        idiomaActual =
-            bloqueActual === 4
-            ? "CAT"
-            : "ES";
-
-        mostrarPacks();
-        return;
-    }
-
-    idiomaActual =
-        bloqueActual % 2 === 0
-        ? "ES"
-        : "CAT";
-
-    mostrarMenuInstantaneo();
-    cargar();
-}
-
-
-function ejecutarCambio() {
-
-    bloqueActual =
-        (bloqueActual + 1) % 6;
-
-    actualizarPantalla();
-
-    siguienteCambio += 15000;
-
-    const espera =
-        Math.max(0, siguienteCambio - performance.now());
-
-    setTimeout(ejecutarCambio, espera);
-}
-
-
-function iniciarSecuencia() {
-
-    bloqueActual = 0;
-
-    actualizarPantalla();
-
-    siguienteCambio =
-        performance.now() + 15000;
-
-    setTimeout(ejecutarCambio, 15000);
-}
-
-
-iniciarSecuencia();
-
 
 </script>
 
