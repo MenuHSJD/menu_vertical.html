@@ -782,14 +782,140 @@ pintar(filtrar("Cena","Vegano"));
 
 
 }
+}
 catch(e){
-console.error(e);
+    console.error(e);
 }
 
 }
+
+
+function mostrarMenuInstantaneo() {
+
+    const ahora = new Date();
+
+    const minutosActuales =
+        ahora.getHours() * 60 +
+        ahora.getMinutes();
+
+    const esComida =
+        minutosActuales >= 420 &&
+        minutosActuales < 910;
+
+    pantallaPacks.style.display = "none";
+    creditosAlergenos.style.display = "block";
+
+    if (esComida) {
+
+        menuComida.style.display = "block";
+        menuCena.style.display = "none";
+
+    } else {
+
+        menuComida.style.display = "none";
+        menuCena.style.display = "block";
+    }
 }
+
+
+function actualizarPantalla() {
+
+    if (bloqueActual === 0) {
+
+        idiomaActual = "ES";
+        mostrarMenuInstantaneo();
+        cargar();
+        return;
+    }
+
+    if (bloqueActual === 1) {
+
+        idiomaActual = "CAT";
+        mostrarMenuInstantaneo();
+        cargar();
+        return;
+    }
+
+    if (bloqueActual === 2) {
+
+        idiomaActual = "ES";
+        mostrarMenuInstantaneo();
+        cargar();
+        return;
+    }
+
+    if (bloqueActual === 3) {
+
+        idiomaActual = "CAT";
+        mostrarMenuInstantaneo();
+        cargar();
+        return;
+    }
+
+    if (bloqueActual === 4) {
+
+        idiomaActual = "CAT";
+        mostrarPacks();
+        return;
+    }
+
+    if (bloqueActual === 5) {
+
+        idiomaActual = "ES";
+        mostrarPacks();
+    }
+}
+
+
+function programarCambioExacto() {
+
+    const ahora = performance.now();
+
+    while (ahora >= siguienteCambio) {
+
+        bloqueActual =
+            (bloqueActual + 1) % 6;
+
+        siguienteCambio += 15000;
+    }
+
+    actualizarPantalla();
+
+    const espera =
+        Math.max(
+            0,
+            siguienteCambio - performance.now()
+        );
+
+    setTimeout(
+        programarCambioExacto,
+        espera
+    );
+}
+
+
+async function iniciarSecuencia() {
+
+    bloqueActual = 0;
+
+    idiomaActual = "ES";
+
+    mostrarMenuInstantaneo();
+
+    await cargar();
+
+    siguienteCambio =
+        performance.now() + 15000;
+
+    setTimeout(
+        programarCambioExacto,
+        15000
+    );
+}
+
+
+iniciarSecuencia();
 
 </script>
-
 </body>
 </html>
